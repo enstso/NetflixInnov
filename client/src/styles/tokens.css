@@ -1,0 +1,24 @@
+:root {
+  --bg: #141414;
+  --surface: #1f1f1f;
+  --surface2: #232323;
+  --text: #ffffff;
+  --text2: rgba(255, 255, 255, 0.72);
+  --accent: #e50914;
+  --accentDark: #b20710;
+  --border: rgba(255, 255, 255, 0.1);
+
+  --radius: 14px;
+  --space-1: 8px;
+  --space-2: 12px;
+  --space-3: 16px;
+  --space-4: 24px;
+  --space-5: 32px;
+  --space-6: 40px;
+
+  --max-width: 1360px;
+
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Inter, Roboto, Arial;
+  color: var(--text);
+  background: var(--bg);
+}
