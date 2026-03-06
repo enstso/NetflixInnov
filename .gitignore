@@ -4,3 +4,5 @@ dist
 *.log
 client/dist
 server/dist
+client/.env.production
+client/.env.production

@@ -21,8 +21,34 @@ npm run dev
 ## Variables optionnelles
 
 - `VITE_SERVER_URL` (client) - par défaut `http://localhost:4000`
-- `CLIENT_ORIGIN` (server) - par défaut `http://localhost:5173`
+- `CLIENT_ORIGIN` (server) - par défaut `http://localhost:5173,https://STREAMSYNC.enstso.com`
 - `PORT` (server) - par défaut `4000`
+
+## URLs de prod (configurées)
+
+- Front: `https://STREAMSYNC.enstso.com`
+- Back: `https://STREAMSYNCBack.enstso.com`
+
+## Docker (prod)
+
+```bash
+# Build backend
+docker build -t streamsync-back ./server
+
+# Run backend (CORS autorisé pour le front)
+docker run --rm -p 4000:4000 \
+  -e PORT=4000 \
+  -e CLIENT_ORIGIN=https://STREAMSYNC.enstso.com \
+  streamsync-back
+
+# Build frontend (injecte l'URL backend)
+docker build -t streamsync-front \
+  --build-arg VITE_SERVER_URL=https://STREAMSYNCBack.enstso.com \
+  ./client
+
+# Run frontend
+docker run --rm -p 8080:80 streamsync-front
+```
 
 ## Test démo à 2 onglets
 
@@ -64,4 +90,3 @@ npm run dev
 - disconnect host -> `room_closed` au guest puis suppression room.
 - disconnect guest -> `guest_left` au host.
 - nettoyage automatique toutes les 45s des rooms inactives > 10 min.
-
