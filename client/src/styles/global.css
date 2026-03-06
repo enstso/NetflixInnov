@@ -491,6 +491,96 @@ input {
   padding: var(--space-3);
 }
 
+.recommendation-card {
+  display: grid;
+  gap: var(--space-2);
+}
+
+.profile-reco-list {
+  display: grid;
+  gap: var(--space-2);
+  max-height: 360px;
+  overflow: auto;
+  padding-right: 2px;
+}
+
+.profile-reco-item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  display: grid;
+  gap: 10px;
+}
+
+.profile-reco-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.profile-reco-head h4 {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.profile-reco-head span {
+  color: var(--text2);
+  font-size: 0.82rem;
+}
+
+.watched-groups {
+  display: grid;
+  gap: 8px;
+}
+
+.watched-group p {
+  margin: 0 0 6px;
+  color: var(--text2);
+  font-size: 0.84rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.film-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.film-chip {
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  padding: 4px 9px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 0.8rem;
+}
+
+.ai-recos {
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 8px;
+}
+
+.ai-reco-title {
+  margin: 0 0 6px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.86rem;
+}
+
+.ai-recos ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 4px;
+}
+
+.ai-recos li {
+  color: var(--text2);
+  font-size: 0.86rem;
+}
+
 .side-card-head {
   display: flex;
   justify-content: space-between;
