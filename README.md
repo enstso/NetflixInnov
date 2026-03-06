@@ -21,13 +21,13 @@ npm run dev
 ## Variables optionnelles
 
 - `VITE_SERVER_URL` (client) - par défaut `http://localhost:4000`
-- `CLIENT_ORIGIN` (server) - par défaut `http://localhost:5173,https://STREAMSYNC.enstso.com`
+- `CLIENT_ORIGIN` (server) - par défaut `http://localhost:5173,https://streamsync.enstso.com`
 - `PORT` (server) - par défaut `4000`
 
 ## URLs de prod (configurées)
 
-- Front: `https://STREAMSYNC.enstso.com`
-- Back: `https://STREAMSYNCBack.enstso.com`
+- Front: `https://streamsync.enstso.com`
+- Back: `https://streamsyncback.enstso.com`
 
 ## Docker (prod)
 
@@ -38,16 +38,16 @@ docker build -t streamsync-back ./server
 # Run backend (CORS autorisé pour le front)
 docker run --rm -p 4000:4000 \
   -e PORT=4000 \
-  -e CLIENT_ORIGIN=https://STREAMSYNC.enstso.com \
+  -e CLIENT_ORIGIN=https://streamsync.enstso.com \
   streamsync-back
 
 # Build frontend (injecte l'URL backend)
 docker build -t streamsync-front \
-  --build-arg VITE_SERVER_URL=https://STREAMSYNCBack.enstso.com \
+  --build-arg VITE_SERVER_URL=https://streamsyncback.enstso.com \
   ./client
 
 # Run frontend
-docker run --rm -p 8080:80 streamsync-front
+docker run --rm -p 8080:8003 streamsync-front
 ```
 
 ## Test démo à 2 onglets

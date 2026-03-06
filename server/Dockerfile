@@ -14,7 +14,7 @@ WORKDIR /app
 
 ENV NODE_ENV=production
 ENV PORT=4000
-ENV CLIENT_ORIGIN=https://STREAMSYNC.enstso.com
+ENV CLIENT_ORIGIN=https://streamsync.enstso.com
 
 COPY package*.json ./
 RUN if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi
