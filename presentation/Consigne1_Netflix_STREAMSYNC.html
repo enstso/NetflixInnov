@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Consigne 1 — Netflix 2026-2029 | STREAMSYNC</title>
+  <style>
+    :root{
+      --bg:#0b0b0f;
+      --panel:#14141b;
+      --panel-2:#1b1b25;
+      --text:#f5f5f7;
+      --muted:#b9b9c7;
+      --soft:#8e8ea0;
+      --red:#e50914;
+      --red-2:#ff3341;
+      --line:rgba(255,255,255,.10);
+      --green:#1dbf73;
+      --shadow:0 18px 60px rgba(0,0,0,.35);
+      --radius:24px;
+      --max:1200px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(229,9,20,.18), transparent 28%),
+        radial-gradient(circle at 80% 15%, rgba(255,51,65,.12), transparent 22%),
+        linear-gradient(180deg, #0a0a0f 0%, #111117 100%);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{color:inherit;text-decoration:none}
+
+    .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+
+    .nav{
+      position:sticky;top:0;z-index:10;
+      backdrop-filter: blur(12px);
+      background:rgba(10,10,15,.74);
+      border-bottom:1px solid var(--line);
+    }
+    .nav-inner{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:18px;padding:14px 0;
+    }
+    .brand{
+      display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.04em;
+    }
+    .brand-badge{
+      width:38px;height:38px;border-radius:12px;
+      display:grid;place-items:center;font-weight:900;
+      background:linear-gradient(135deg,var(--red),var(--red-2));
+      box-shadow:0 8px 22px rgba(229,9,20,.35);
+    }
+    .brand small{display:block;color:var(--muted);font-weight:600;letter-spacing:0}
+    .nav-links{display:flex;flex-wrap:wrap;gap:14px;color:var(--muted);font-size:.95rem}
+    .nav-links a:hover{color:#fff}
+
+    .hero{padding:72px 0 38px}
+    .hero-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:28px;
+      align-items:stretch;
+    }
+    .hero-card,
+    .panel{
+      background:linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.015));
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+    }
+    .hero-card{padding:34px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:10px;
+      padding:8px 12px;border-radius:999px;
+      background:rgba(229,9,20,.12);border:1px solid rgba(229,9,20,.3);
+      color:#ffd7da;font-size:.92rem;font-weight:700;
+      margin-bottom:16px;
+    }
+    h1{
+      font-size:clamp(2.2rem, 4vw, 4.3rem);
+      line-height:1.02;margin:0 0 18px;
+      letter-spacing:-.04em;
+    }
+    .hero p{
+      font-size:1.08rem;color:var(--muted);max-width:720px;margin:0 0 22px;
+    }
+    .tags{display:flex;flex-wrap:wrap;gap:10px;margin:24px 0 28px}
+    .tag{
+      padding:10px 14px;border-radius:999px;background:rgba(255,255,255,.04);
+      border:1px solid var(--line);color:#fff;font-size:.95rem;font-weight:600;
+    }
+    .cta-row{display:flex;flex-wrap:wrap;gap:12px}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:14px 18px;border-radius:14px;font-weight:700;
+      border:1px solid var(--line);transition:.2s ease;cursor:pointer;
+    }
+    .btn.primary{background:linear-gradient(135deg,var(--red),var(--red-2));border-color:transparent}
+    .btn.secondary{background:rgba(255,255,255,.03);color:var(--text)}
+    .btn:hover{transform:translateY(-1px)}
+
+    .hero-side{padding:28px;display:grid;gap:16px}
+    .metric{
+      background:rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      border-radius:18px;padding:18px;
+    }
+    .metric strong{display:block;font-size:1.8rem;letter-spacing:-.03em}
+    .metric span{display:block;color:var(--muted);margin-top:6px}
+
+    section{padding:26px 0}
+    .section-title{margin:0 0 8px;font-size:2rem;letter-spacing:-.03em}
+    .section-intro{margin:0 0 22px;color:var(--muted);max-width:900px}
+
+    .grid-4,.grid-3,.grid-2{
+      display:grid;gap:18px;
+    }
+    .grid-4{grid-template-columns:repeat(4,minmax(0,1fr))}
+    .grid-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .grid-2{grid-template-columns:repeat(2,minmax(0,1fr))}
+
+    .card{
+      background:linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02));
+      border:1px solid var(--line);
+      border-radius:22px;
+      padding:22px;
+      box-shadow:var(--shadow);
+      height:100%;
+    }
+    .card h3,.card h4{margin:0 0 10px;letter-spacing:-.02em}
+    .card p{margin:0;color:var(--muted)}
+    .kpi{font-size:2rem;font-weight:800;letter-spacing:-.05em;margin-bottom:8px}
+
+    .timeline{
+      display:grid;gap:18px;position:relative;
+    }
+    .timeline-item{
+      display:grid;grid-template-columns:140px 1fr;gap:18px;align-items:start;
+    }
+    .year{
+      position:sticky;top:88px;
+      padding:16px 18px;border-radius:18px;
+      background:rgba(229,9,20,.12);
+      border:1px solid rgba(229,9,20,.28);
+      color:#fff;font-size:1.35rem;font-weight:800;
+      text-align:center;
+    }
+
+    .swot-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .swot{
+      padding:22px;border-radius:22px;border:1px solid var(--line);background:rgba(255,255,255,.03);
+    }
+    .swot h3{margin:0 0 12px}
+    .swot ul{margin:0;padding-left:18px;color:var(--muted)}
+    .swot li+li{margin-top:10px}
+
+    .feature-list,
+    .source-list,
+    .mini-list{margin:0;padding-left:18px;color:var(--muted)}
+    .feature-list li+li,
+    .source-list li+li,
+    .mini-list li+li{margin-top:10px}
+
+    .quote{
+      padding:24px 26px;border-left:4px solid var(--red);
+      background:rgba(255,255,255,.03);border-radius:20px;
+      color:#fff;font-size:1.16rem;box-shadow:var(--shadow);
+    }
+
+    .footer{
+      padding:42px 0 64px;color:var(--soft);
+    }
+    .footbox{
+      display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;
+      padding:22px;border-radius:20px;border:1px solid var(--line);background:rgba(255,255,255,.025);
+    }
+    .source-list a{color:#fff;text-decoration:underline;text-underline-offset:3px}
+
+    .pill{
+      display:inline-flex;align-items:center;gap:8px;font-size:.88rem;font-weight:700;
+      color:#dbffe9;background:rgba(29,191,115,.12);border:1px solid rgba(29,191,115,.28);
+      border-radius:999px;padding:8px 12px;margin-bottom:12px;
+    }
+
+    @media (max-width: 980px){
+      .hero-grid,.grid-4,.grid-3,.grid-2,.swot-grid{grid-template-columns:1fr}
+      .timeline-item{grid-template-columns:1fr}
+      .year{position:static;text-align:left}
+      .nav-inner{flex-direction:column;align-items:flex-start}
+    }
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <div class="brand">
+        <div class="brand-badge">N</div>
+        <div>
+          NETFLIX × STREAMSYNC
+          <small>Consigne 1 — Design fiction 2026-2029</small>
+        </div>
+      </div>
+      <nav class="nav-links">
+        <a href="#vision">Vision</a>
+        <a href="#tendances">Tendances</a>
+        <a href="#scenario">Scénario</a>
+        <a href="#swot">SWOT</a>
+        <a href="#streamsync">STREAMSYNC</a>
+        <a href="#sources">Sources</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="hero-card">
+          <div class="eyebrow">Consigne 1 · Anticiper le futur de Netflix et du streaming</div>
+          <h1>Netflix ne vendra plus seulement du contenu.<br>Il vendra des <span style="color:var(--red-2)">moments partagés</span>.</h1>
+          <p>
+            Notre hypothèse pour 2026-2029 est simple : dans un marché où le temps d’attention est limité,
+            Netflix devra aller au-delà du catalogue et de l’algorithme individuel. Son futur passe par une
+            expérience plus sociale, plus événementielle, plus personnalisée en temps réel et mieux monétisable.
+          </p>
+          <div class="tags">
+            <span class="tag">Entreprise : Netflix</span>
+            <span class="tag">Secteur : streaming vidéo</span>
+            <span class="tag">Format : design fiction + SWOT</span>
+            <span class="tag">Innovation 2026 : STREAMSYNC</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn primary" href="#scenario">Voir le scénario 2026-2029</a>
+            <a class="btn secondary" href="https://STREAMSYNC.enstso.com" target="_blank" rel="noopener noreferrer">Voir la démo STREAMSYNC</a>
+          </div>
+        </div>
+
+        <aside class="panel hero-side" aria-label="Chiffres clés">
+          <div class="metric">
+            <strong>325 M</strong>
+            <span>abonnements payants franchis par Netflix au T4 2025.</span>
+          </div>
+          <div class="metric">
+            <strong>45,2 Md$</strong>
+            <span>de chiffre d’affaires en 2025, avec une croissance publicitaire forte.</span>
+          </div>
+          <div class="metric">
+            <strong>190 M</strong>
+            <span>de monthly active viewers atteints par l’offre avec publicité fin 2025.</span>
+          </div>
+          <div class="metric">
+            <strong>6 h / jour</strong>
+            <span>de temps média moyen à se partager entre SVOD, social vidéo, gaming, musique et podcasts.</span>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="vision">
+      <div class="wrap">
+        <h2 class="section-title">Vision stratégique</h2>
+        <p class="section-intro">
+          D’ici 2029, le streaming premium ne gagnera plus uniquement par la quantité de contenus, mais par la qualité
+          de l’expérience. Netflix dispose déjà de l’échelle, de la marque, de la recommandation et de la capacité produit.
+          La prochaine étape logique est de transformer le visionnage individuel en expérience relationnelle légère.
+        </p>
+        <div class="quote">
+          « Netflix doit évoluer d’une plateforme de contenus personnalisés vers une plateforme de divertissement partagé,
+          capable de prolonger une session, de renforcer la rétention et de créer de la viralité naturelle. »
+        </div>
+      </div>
+    </section>
+
+    <section id="tendances">
+      <div class="wrap">
+        <h2 class="section-title">Tendances observables qui justifient cette vision</h2>
+        <p class="section-intro">
+          Cette partie s’appuie sur des sources officielles Netflix et sur une étude sectorielle Deloitte. Les éléments ci-dessous
+          sont des faits observables ; les projections 2026-2029 viennent ensuite.
+        </p>
+        <div class="grid-4">
+          <article class="card">
+            <div class="kpi">Croissance</div>
+            <h3>Netflix est déjà à très grande échelle</h3>
+            <p>
+              En janvier 2026, Netflix annonce avoir dépassé les 325 millions d’abonnements payants au T4 2025,
+              avec 45,2 Md$ de revenus sur l’année et plus de 1,5 Md$ de revenus publicitaires.
+            </p>
+          </article>
+          <article class="card">
+            <div class="kpi">Ads</div>
+            <h3>La publicité devient un moteur majeur</h3>
+            <p>
+              L’offre avec publicité a atteint 94 millions d’utilisateurs actifs mensuels au printemps 2025,
+              puis 190 millions de monthly active viewers en novembre 2025, signe d’une forte traction du modèle hybride.
+            </p>
+          </article>
+          <article class="card">
+            <div class="kpi">Live</div>
+            <h3>Netflix se rapproche de l’événementiel</h3>
+            <p>
+              Les lettres actionnaires et annonces produit confirment l’accent mis sur le live, les jeux,
+              et une expérience TV plus dynamique avec des recommandations plus réactives en temps réel.
+            </p>
+          </article>
+          <article class="card">
+            <div class="kpi">Attention</div>
+            <h3>Le vrai concurrent est le temps d’attention</h3>
+            <p>
+              Deloitte montre que les entreprises média se partagent environ 6 heures de temps média par jour,
+              tandis que les plateformes sociales et le gaming grignotent une part croissante de ce temps.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="scenario">
+      <div class="wrap">
+        <h2 class="section-title">Scénario design fiction — Netflix 2026 à 2029</h2>
+        <p class="section-intro">
+          Voici le scénario que nous défendons : Netflix garde son ADN premium, mais ajoute une couche sociale native.
+          STREAMSYNC est le premier pas crédible de cette bascule.
+        </p>
+
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="year">2026</div>
+            <div class="card">
+              <div class="pill">Année de lancement</div>
+              <h3>Netflix introduit STREAMSYNC pour recréer la “soirée film partagée” à distance</h3>
+              <p>
+                Le produit cible un usage simple : deux personnes regardent un contenu Netflix ensemble, en parfaite synchronisation,
+                avec un chat live et des réactions emoji. Le bénéfice n’est pas seulement technique ; il est émotionnel. Netflix cesse
+                d’être uniquement une destination de visionnage et devient aussi un support de lien social.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="year">2027</div>
+            <div class="card">
+              <div class="pill">Année d’extension</div>
+              <h3>Le co-watching devient un levier de rétention et de découverte collaborative</h3>
+              <p>
+                Après validation du format, Netflix enrichit l’expérience : suggestions co-personnalisées, salons thématiques sur les sorties,
+                sessions partagées autour des événements live, et relances intelligentes après la séance. L’objectif est double : augmenter la durée
+                moyenne de session et faire découvrir plus de contenus à forte valeur.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="year">2028-2029</div>
+            <div class="card">
+              <div class="pill">Année de maturité</div>
+              <h3>Netflix devient une plateforme de contenus + interactions + signaux de groupe</h3>
+              <p>
+                À maturité, Netflix exploite les signaux sociaux faibles — qui regarde avec qui, quels genres prolongent une session,
+                quelles réactions augmentent l’engagement — pour améliorer la recommandation, la réactivation et la valorisation publicitaire.
+                Le streaming premium se rapproche alors d’un média relationnel, sans perdre son exigence éditoriale.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="swot">
+      <div class="wrap">
+        <h2 class="section-title">Analyse SWOT</h2>
+        <p class="section-intro">
+          Cette SWOT relie les faits de marché à notre proposition d’innovation.
+        </p>
+
+        <div class="swot-grid">
+          <div class="swot">
+            <h3>Forces</h3>
+            <ul>
+              <li>Marque mondiale, catalogue fort et capacité d’investissement élevée.</li>
+              <li>Expertise historique en personnalisation et recommandation.</li>
+              <li>Dynamique solide sur la publicité, le live et l’évolution de l’interface.</li>
+            </ul>
+          </div>
+          <div class="swot">
+            <h3>Faiblesses</h3>
+            <ul>
+              <li>Expérience encore majoritairement individuelle.</li>
+              <li>Partage d’émotion limité par rapport aux usages sociaux natifs.</li>
+              <li>Dépendance à la puissance des nouveautés pour relancer l’attention.</li>
+            </ul>
+          </div>
+          <div class="swot">
+            <h3>Opportunités</h3>
+            <ul>
+              <li>Créer un usage social premium sans complexifier l’expérience.</li>
+              <li>Augmenter le temps de visionnage et la fréquence de retour.</li>
+              <li>Préparer des recommandations collaboratives et des formats live partagés.</li>
+            </ul>
+          </div>
+          <div class="swot">
+            <h3>Menaces</h3>
+            <ul>
+              <li>Concurrence du social vidéo, du gaming et de la fragmentation des usages.</li>
+              <li>Fatigue aux abonnements et sensibilité croissante au prix.</li>
+              <li>Pression continue sur les coûts de contenus et l’attention disponible.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="streamsync">
+      <div class="wrap">
+        <h2 class="section-title">Pourquoi STREAMSYNC est la bonne innovation en 2026</h2>
+        <p class="section-intro">
+          STREAMSYNC n’est pas un gadget : c’est une réponse produit directe à la mutation du secteur.
+        </p>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>Ce que fait le produit</h3>
+            <ul class="feature-list">
+              <li>1 host crée une room et partage un code court.</li>
+              <li>1 guest rejoint immédiatement, sans friction.</li>
+              <li>Lecture synchronisée en temps réel, pilotée par l’host.</li>
+              <li>Chat et réactions emoji pendant le visionnage.</li>
+              <li>Bloc visuel “Vu par catégories” + “Recommandé par l’IA”.</li>
+              <li>Session fermée proprement si l’host quitte la room.</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <h3>Ce que cela apporte à Netflix</h3>
+            <ul class="feature-list">
+              <li>Plus de temps de visionnage par session grâce au visionnage partagé.</li>
+              <li>Plus de rétention grâce à l’usage social récurrent.</li>
+              <li>Effet viral naturel via les invitations et les codes de room.</li>
+              <li>Base crédible pour futures expériences multi-profils et collaboratives.</li>
+              <li>Différenciation claire face aux plateformes purement sociales.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2 class="section-title">KPIs à suivre</h2>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Adoption</h3>
+            <ul class="mini-list">
+              <li>Taux de création de room.</li>
+              <li>Taux de room complétée à 2/2.</li>
+              <li>Taux de première activation après exposition au produit.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Engagement</h3>
+            <ul class="mini-list">
+              <li>Durée moyenne de session synchronisée.</li>
+              <li>Messages et réactions par session.</li>
+              <li>Taux de prolongation après le premier contenu.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Rétention</h3>
+            <ul class="mini-list">
+              <li>Taux de retour après une première watch party.</li>
+              <li>Fréquence mensuelle d’usage des rooms.</li>
+              <li>Impact sur la rétention des profils exposés à STREAMSYNC.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="sources">
+      <div class="wrap">
+        <h2 class="section-title">Sources fiables utilisées</h2>
+        <p class="section-intro">
+          Les chiffres et tendances ci-dessus viennent de sources officielles ou sectorielles. Les passages sur 2027-2029
+          sont des projections argumentées à partir de ces éléments.
+        </p>
+        <div class="card">
+          <ol class="source-list">
+            <li><a href="https://s22.q4cdn.com/959853165/files/doc_financials/2025/q4/FINAL-Q4-25-Shareholder-Letter.pdf" target="_blank" rel="noopener noreferrer">Netflix — Q4 2025 Shareholder Letter (20 janvier 2026)</a></li>
+            <li><a href="https://ir.netflix.net/financials/annual-reports-and-proxies/default.aspx" target="_blank" rel="noopener noreferrer">Netflix Investor Relations — Annual Reports &amp; Proxies</a></li>
+            <li><a href="https://about.netflix.com/news/netflix-upfront-2025-the-center-of-attention" target="_blank" rel="noopener noreferrer">Netflix — Upfront 2025: The Center of Attention</a></li>
+            <li><a href="https://about.netflix.com/news/netflix-third-season-of-ads-and-a-look-ahead-at-whats-next" target="_blank" rel="noopener noreferrer">Netflix — Third Season of Ads and a Look Ahead at What’s Next</a></li>
+            <li><a href="https://about.netflix.com/news/unveiling-our-innovative-new-tv-experience" target="_blank" rel="noopener noreferrer">Netflix — Unveiling Our Innovative New TV Experience</a></li>
+            <li><a href="https://about.netflix.com/fr/news/netflix-reveals-upcoming-us-series-films-and-games-for-2025" target="_blank" rel="noopener noreferrer">About Netflix France — Séries, films et jeux à venir en 2025</a></li>
+            <li><a href="https://www.deloitte.com/us/en/insights/industry/technology/digital-media-trends-consumption-habits-survey/2025.html" target="_blank" rel="noopener noreferrer">Deloitte — 2025 Digital Media Trends</a></li>
+            <li><a href="https://about.netflix.com/fr/news/what-next-netflix-reveals-series-films-and-games-coming-in-2026" target="_blank" rel="noopener noreferrer">About Netflix France — Séries, films et jeux à venir en 2026</a></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap">
+      <div class="footbox">
+        <div>
+          <strong>Conclusion :</strong> le futur de Netflix ne se joue pas seulement sur le catalogue, mais sur la capacité à transformer un visionnage en moment partagé.
+        </div>
+        <a class="btn secondary" href="https://STREAMSYNC.enstso.com" target="_blank" rel="noopener noreferrer">Accéder à STREAMSYNC</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
