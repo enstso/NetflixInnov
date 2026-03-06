@@ -5,5 +5,5 @@ FROM nginx:1.27-alpine
 COPY nginx.conf /etc/nginx/templates/default.conf.template
 COPY Consigne1_Netflix_STREAMSYNC.html /usr/share/nginx/html/index.html
 
-EXPOSE 80
-CMD ["/bin/sh", "-c", "PORT_VALUE=${PORT:-80}; sed \"s/__PORT__/${PORT_VALUE}/g\" /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+EXPOSE 8004
+CMD ["/bin/sh", "-c", "PORT_VALUE=${PORT:-8004}; sed \"s/__PORT__/${PORT_VALUE}/g\" /etc/nginx/templates/default.conf.template > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
