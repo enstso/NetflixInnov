@@ -6,7 +6,7 @@ import { RoomsManager } from "./roomsManager.js";
 import { registerSocketHandlers } from "./socketHandlers.js";
 
 const PORT = Number(process.env.PORT ?? 4000);
-const CLIENT_ORIGINS = (process.env.CLIENT_ORIGIN ?? "http://localhost:5173,https://STREAMSYNC.enstso.com")
+const CLIENT_ORIGINS = (process.env.CLIENT_ORIGIN ?? "http://0.0.0.0:5173,https://STREAMSYNC.enstso.com")
   .split(",")
   .map((origin) => origin.trim())
   .filter(Boolean);
